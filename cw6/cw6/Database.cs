@@ -4,10 +4,10 @@ namespace cw6;
 
 public class Database
 {
-    public static List<Test> Tests = new List<Test>()
+    public static List<Animal> Tests = new List<Animal>()
     {
-        new Test() { Id = 1, Name = "test1" },
-        new Test() { Id = 2, Name = "test2" },
-        new Test() { Id = 3, Name = "test3" }
+        new Animal() { Id = 1, Name = "test1" },
+        new Animal() { Id = 2, Name = "test2" },
+        new Animal() { Id = 3, Name = "test3" }
     };
 }
