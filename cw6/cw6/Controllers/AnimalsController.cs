@@ -30,5 +30,46 @@ namespace cw6.Controllers
             Database.Tests.Add(animal);
             return Created();
         }
+        
+        
+        // Put api/animals/{id}
+        [HttpPut("{id}")]
+        public IActionResult Update(int id,Animal updatedAnimal)
+        {
+            var existingAnimal = Database.Tests.FirstOrDefault(x => x.Id == id);
+            if (existingAnimal == null)
+            {
+                return NotFound();
+            }
+            existingAnimal.Name = updatedAnimal.Name;
+            existingAnimal.Kategoria = updatedAnimal.Kategoria;
+            existingAnimal.Masa = updatedAnimal.Masa;
+            existingAnimal.kolorSiersci = updatedAnimal.kolorSiersci;
+
+            return NoContent();
+        }
+        
+        // Delete api/animals/{id}
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var animal = Database.Tests.FirstOrDefault(x => x.Id == id);
+            if (animal == null)
+            {
+                return NotFound();
+            }
+
+            Database.Tests.Remove(animal);
+            return NoContent();
+        }
+        
+        
+        // Get api/animals/search/{name}
+        [HttpGet("search/{name}")]
+        public IActionResult SearchByName(string name)
+        {
+            var animals = Database.Tests.Where(x => x.Name.Contains(name)).ToList();
+            return Ok(animals);
+        }
     }
 }
