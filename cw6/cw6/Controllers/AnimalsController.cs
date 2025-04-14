@@ -82,5 +82,20 @@ namespace cw6.Controllers
             var animalVisits = Database.TestVisits.Where(v => v.Animal.Id == id).ToList();
             return Ok(animalVisits);
         }
+        
+        
+        [HttpPost("{id}/visits")]
+        public IActionResult AddVisit(int id, Visit newVisit)
+        {
+            var animal = Database.Tests.FirstOrDefault(a => a.Id == id);
+            if (animal == null)
+                return NotFound("Animal not found.");
+
+            newVisit.Animal.Id = id;
+            Database.TestVisits.Add(newVisit);
+
+            return CreatedAtAction(nameof(GetVisits), new { id }, newVisit);
+        }
+        
     }
 }
