@@ -10,4 +10,9 @@ public class Database
         new Animal() { Id = 2, Name = "puszek2", Kategoria = "Pies", Masa  = 20,kolorSiersci="czarny" },
         new Animal() { Id = 3, Name = "puszek3", Kategoria = "Pies", Masa  = 20,kolorSiersci="szary" }
     };
+
+    public static List<Visit> TestVisits = new List<Visit>()
+    {
+
+    };
 }

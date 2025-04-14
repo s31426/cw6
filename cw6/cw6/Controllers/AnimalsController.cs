@@ -71,5 +71,16 @@ namespace cw6.Controllers
             var animals = Database.Tests.Where(x => x.Name.Contains(name)).ToList();
             return Ok(animals);
         }
+        
+        [HttpGet("{id}/visits")]
+        public IActionResult GetVisits(int id)
+        {
+            var animal = Database.Tests.FirstOrDefault(a => a.Id == id);
+            if (animal == null)
+                return NotFound();
+
+            var animalVisits = Database.TestVisits.Where(v => v.Animal.Id == id).ToList();
+            return Ok(animalVisits);
+        }
     }
 }
